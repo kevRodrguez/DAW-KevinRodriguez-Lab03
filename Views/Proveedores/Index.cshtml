@@ -1,73 +1,65 @@
 @model IEnumerable<SourcingManager.Models.Proveedor>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Proveedores";
 }
 
-<!DOCTYPE html>
+<div class="page-header">
+    <div>
+        <span class="page-kicker">Cartera</span>
+        <h1 class="page-title">Proveedores</h1>
+        <p class="page-subtitle">Administra la lista de proveedores registrados en el sistema.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Nuevo proveedor</a>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RucONit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Direccion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoriaProveedor)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RucONit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoriaProveedor.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="table-shell">
+@if (!Model.Any())
+{
+    <div class="empty-state">
+        <strong>Aún no hay proveedores</strong>
+        <p class="mb-3">Registra el primero para empezar a construir tu cartera.</p>
+        <a class="btn btn-primary" asp-action="Create">Registrar proveedor</a>
+    </div>
 }
-    </tbody>
-</table>
-</body>
-</html>
+else
+{
+    <div class="table-responsive">
+        <table class="table table-sourcing align-middle">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                    <th>@Html.DisplayNameFor(model => model.RucONit)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                    <th>@Html.DisplayNameFor(model => model.Direccion)</th>
+                    <th>@Html.DisplayNameFor(model => model.CategoriaProveedor)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="supplier-name">@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td><code>@Html.DisplayFor(modelItem => item.RucONit)</code></td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Direccion)</td>
+                    <td>
+                        <span class="badge-category">@Html.DisplayFor(modelItem => item.CategoriaProveedor.Nombre)</span>
+                    </td>
+                    <td>
+                        <div class="action-links">
+                            <a class="btn btn-outline-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@item.Id">Detalle</a>
+                            <a class="btn btn-outline-secondary text-danger border-danger-subtle" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+</div>

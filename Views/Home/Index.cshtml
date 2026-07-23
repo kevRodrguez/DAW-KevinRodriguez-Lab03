@@ -1,8 +1,34 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Inicio";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="home-hero">
+    <span class="page-kicker">Registro de sourcing</span>
+    <h1>Proveedores bajo control</h1>
+    <p>
+        Consulta, registra y actualiza tu cartera de proveedores con RUC/NIT,
+        contacto y categoría — pensado para operaciones de compras.
+    </p>
+    <div class="home-actions">
+        <a class="btn btn-accent btn-lg" asp-controller="Proveedores" asp-action="Index">Ver proveedores</a>
+        <a class="btn btn-outline-ink btn-lg" asp-controller="Proveedores" asp-action="Create">Registrar nuevo</a>
+    </div>
+</section>
+
+<div class="home-features">
+    <article class="feature-tile">
+        <span class="feature-index">CARTERA</span>
+        <h3>Listado operativo</h3>
+        <p>Revisa nombre, documento fiscal, correo y categoría en una sola tabla.</p>
+    </article>
+    <article class="feature-tile">
+        <span class="feature-index">ALTA</span>
+        <h3>Alta rápida</h3>
+        <p>Crea proveedores con validación de datos y asignación de categoría.</p>
+    </article>
+    <article class="feature-tile">
+        <span class="feature-index">DETALLE</span>
+        <h3>Ficha completa</h3>
+        <p>Edita, consulta o elimina registros sin salir del flujo de trabajo.</p>
+    </article>
 </div>

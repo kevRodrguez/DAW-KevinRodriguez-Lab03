@@ -1,63 +1,42 @@
 @model SourcingManager.Models.Proveedor
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Detalle del proveedor";
 }
 
-<!DOCTYPE html>
+<div class="page-header">
+    <div>
+        <span class="page-kicker">Ficha</span>
+        <h1 class="page-title">Detalle del proveedor</h1>
+        <p class="page-subtitle">Información completa del registro seleccionado.</p>
+    </div>
+</div>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<div class="page-panel form-panel">
+    <dl class="details-list">
+        <dt>@Html.DisplayNameFor(model => model.Nombre)</dt>
+        <dd>@Html.DisplayFor(model => model.Nombre)</dd>
 
-<div>
-    <h4>Proveedor</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RucONit)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RucONit)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Telefono)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Telefono)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Direccion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Direccion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CategoriaProveedor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CategoriaProveedor.Nombre)
+        <dt>RUC / NIT</dt>
+        <dd><code>@Html.DisplayFor(model => model.RucONit)</code></dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd>@(string.IsNullOrWhiteSpace(Model.Email) ? "—" : Model.Email)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Telefono)</dt>
+        <dd>@(string.IsNullOrWhiteSpace(Model.Telefono) ? "—" : Model.Telefono)</dd>
+
+        <dt>@Html.DisplayNameFor(model => model.Direccion)</dt>
+        <dd>@(string.IsNullOrWhiteSpace(Model.Direccion) ? "—" : Model.Direccion)</dd>
+
+        <dt>Categoría</dt>
+        <dd>
+            <span class="badge-category">@Html.DisplayFor(model => model.CategoriaProveedor.Nombre)</span>
         </dd>
     </dl>
+
+    <div class="form-actions">
+        <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Editar</a>
+        <a class="btn btn-outline-secondary" asp-action="Index">Volver al listado</a>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
-</body>
-</html>

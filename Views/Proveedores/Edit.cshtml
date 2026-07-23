@@ -1,68 +1,62 @@
 @model SourcingManager.Models.Proveedor
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Editar proveedor";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-
-<h4>Proveedor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Nombre" class="control-label"></label>
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RucONit" class="control-label"></label>
-                <input asp-for="RucONit" class="form-control" />
-                <span asp-validation-for="RucONit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control" />
-                <span asp-validation-for="Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Direccion" class="control-label"></label>
-                <input asp-for="Direccion" class="form-control" />
-                <span asp-validation-for="Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoriaProveedorId" class="control-label"></label>
-                <select asp-for="CategoriaProveedorId" class="form-control" asp-items="ViewBag.CategoriaProveedorId"></select>
-                <span asp-validation-for="CategoriaProveedorId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="page-header">
+    <div>
+        <span class="page-kicker">Actualización</span>
+        <h1 class="page-title">Editar proveedor</h1>
+        <p class="page-subtitle">Modifica los datos del proveedor seleccionado.</p>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="page-panel form-panel">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RucONit" class="form-label">RUC / NIT</label>
+            <input asp-for="RucONit" class="form-control" />
+            <span asp-validation-for="RucONit" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 form-group">
+                <label asp-for="Telefono" class="form-label"></label>
+                <input asp-for="Telefono" class="form-control" />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Direccion" class="form-label"></label>
+            <input asp-for="Direccion" class="form-control" />
+            <span asp-validation-for="Direccion" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoriaProveedorId" class="form-label">Categoría</label>
+            <select asp-for="CategoriaProveedorId" class="form-select" asp-items="ViewBag.CategoriaProveedorId"></select>
+            <span asp-validation-for="CategoriaProveedorId" class="text-danger"></span>
+        </div>
+
+        <div class="form-actions">
+            <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-outline-secondary">Volver al listado</a>
+        </div>
+    </form>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>
