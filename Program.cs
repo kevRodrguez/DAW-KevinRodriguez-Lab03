@@ -1,7 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using SourcingManager.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<SourcingDbContext>(options =>
+options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
 var app = builder.Build();
 
